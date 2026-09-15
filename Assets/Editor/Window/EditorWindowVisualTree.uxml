@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Editor/UI/Styles/EditorWindowStyle.uss?fileID=7433441132597879392&amp;guid=e2fc15c8d49c1294082b50e94b34bbbe&amp;type=3#EditorWindowStyle"/>
+    <ui:VisualElement name="Container" class="header" style="flex-grow: 1; background-color: rgb(75, 75, 75);">
+        <ui:Label text="Editor Window" name="Title" class="TitleLabel titleLabel"/>
+        <ui:VisualElement name="GridEditorContainer" style="flex-grow: 1; width: 130px; flex-shrink: 1; aspect-ratio: auto; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-right-width: 3px; border-top-width: 0;">
+            <ui:TextField label="Width" placeholder-text="0" name="WidthTextField" keyboard-type="NumberPad" auto-correction="true" password="false" value="" class="textField" style="height: auto; width: 158px; justify-content: flex-start; align-self: auto;"/>
+            <ui:TextField label="Height" placeholder-text="0" name="HeightTextField" keyboard-type="NumberPad" auto-correction="true" password="false" value="" class="textField" style="height: auto; width: 158px;"/>
+            <ui:Button text="Create Grid" name="CreateGridButton" class="button" style="margin-top: 15px;"/>
+            <ui:Button text="Clear Grid" name="CreateGridButton" class="button" style="margin-top: 15px;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
