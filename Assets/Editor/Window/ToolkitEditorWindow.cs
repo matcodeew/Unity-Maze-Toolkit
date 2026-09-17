@@ -6,10 +6,8 @@ namespace Matcodeew.Maze_Toolkit
 {
     internal class ToolkitEditorWindow : EditorWindow
     {
-        private IntegerField widthField;
-        private IntegerField heightField;
-        private Button createGridButton;
-
+        private GridPreview gridPreview;
+        private GridSettings gridSettings;
         [MenuItem("Tools/Maze Toolkit")]
         public static void OpenWindow()
         {
@@ -20,47 +18,36 @@ namespace Matcodeew.Maze_Toolkit
                 new GUIContent("Maze Toolkit");
         }
 
+
         public void CreateGUI()
         {
             if (!LoadAsset(
                 "Assets/Editor/Window/EditorWindowVisualTree.uxml",
-                out VisualTreeAsset visualTree))
+                out VisualTreeAsset editorWindow))
             {
                 return;
             }
 
-            visualTree.CloneTree(rootVisualElement);
+            editorWindow.CloneTree(rootVisualElement);
 
-            BindElements();
-            RegisterCallbacks();
+            MazeEditorContext context =
+                new MazeEditorContext(10, 10, 25f);
+
+
+            VisualElement gridPreviewRoot =
+                rootVisualElement.Q<VisualElement>("GridPreview");
+            gridPreview =
+                new GridPreview(gridPreviewRoot, context);
+
+
+            VisualElement gridSettingsRoot =
+               rootVisualElement.Q<VisualElement>("GridSettings");
+
+            gridSettings =
+                new GridSettings(context, gridSettingsRoot);
+
         }
-
-        private void BindElements()
-        {
-            widthField =
-                rootVisualElement.Q<IntegerField>("width-field");
-
-            heightField =
-                rootVisualElement.Q<IntegerField>("height-field");
-
-            createGridButton =
-                rootVisualElement.Q<Button>("create-grid-button");
-        }
-
-        private void RegisterCallbacks()
-        {
-            createGridButton.clicked += OnCreateGridClicked;
-        }
-
-        private void OnCreateGridClicked()
-        {
-            Debug.Log(
-                $"Create {widthField.value}x{heightField.value}");
-        }
-
-        private bool LoadAsset(
-            string path,
-            out VisualTreeAsset asset)
+        private bool LoadAsset(string path, out VisualTreeAsset asset)
         {
             asset =
                 AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(path);
